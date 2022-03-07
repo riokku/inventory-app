@@ -16,5 +16,10 @@
     "prettier-plugin-svelte": "^2.5.0",
     "svelte": "^3.44.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "firebase": "^9.6.8",
+    "rxfire": "^6.0.3",
+    "rxjs": "^7.5.4"
+  }
 }
