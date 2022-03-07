@@ -38,25 +38,44 @@
 </script>
 
 <style>
+  /* Add form styles */
   form{
-      background-color: #e9f5db;
-      border: 2px solid #718355;
-      border-radius: 1rem;
-      padding: 2rem;
-      width: fit-content;
-    }
-    label, button{
-      color: #2f2f2f;
-      font-weight: 800;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    input, textarea, select{
-      margin-bottom: 1rem;
-    }
-    select{
-      min-width: 200px;
-    }
+    background-color: #e9f5db;
+    border: 2px solid #718355;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: fit-content;
+    /* display: none; */
+  }
+  label, button{
+    color: #2f2f2f;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  input, textarea, select{
+    margin-bottom: 1rem;
+  }
+  select{
+    min-width: 200px;
+  }
+  /* Inventory card styles */
+  .inventory-card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .inventory-card{
+    background-color: gray;
+    padding: 1rem;
+    box-shadow: 4px 4px 4px #474747;
+  }
+  .inventory-card p:last-child{
+    margin-bottom: 0;
+  }
+  .inventory-card p:first-child{
+    margin-top: 0;
+  }
 </style>
 
 <h1>
@@ -69,18 +88,18 @@
   <label for="item-type">Item type:</label>
   <select name="item-type" id="item-type" bind:value={type}>
     <option value=""></option>
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="opel">Opel</option>
-    <option value="audi">Audi</option>
+    <option value="Toy">Toy</option>
+    <option value="Bed">Bed</option>
+    <option value="Lease">Lease</option>
+    <option value="Food">Food</option>
   </select>
   <label for="checked-out-to">Checked out to:</label>
   <select name="checked-out-to" id="checked-out-to" bind:value={checkedOutTo}>
     <option value=""></option>
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="opel">Opel</option>
-    <option value="audi">Audi</option>
+    <option value="Dominic">Dominic</option>
+    <option value="Chester">Chester</option>
+    <option value="Sarah">Sarah</option>
+    <option value="Anna">Anna</option>
   </select>
   <label for="date-checked-out">Date checked out:</label>
   <input name="date-checked-out" type="date" bind:value={checkedOut}/>
@@ -93,6 +112,15 @@
   </button>
 </form>
 
-{#each $items as item}
-  <p>{item.comments}</p>
-{/each}
+<section class="inventory-card-wrapper">
+  {#each $items as item}
+    <div class="inventory-card">
+      <p>Name: {item.name}</p>
+      <p>Type: {item.type}</p>
+      <p><i class="fa-solid fa-user"></i> Checked out to: {item.checkedOutTo}</p>
+      <p>Checked out date: {item.checkedOut}</p>
+      <p>Checked in date: {item.checkedIn}</p>
+      <p>Comments: {item.comments}</p>
+    </div>
+  {/each}
+</section>
